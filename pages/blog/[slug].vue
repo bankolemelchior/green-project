@@ -28,7 +28,7 @@ const {data:post} = await useAsyncData('post',() => queryCollection('blog').path
             </UPageHeader>
             <!-- Body -->
              <UPage>
-                 <UPageBody v-if="post">
+                 <UPageBody v-if="post" prose>
                     <ContentRenderer :value="post"/>
                  </UPageBody>
              </UPage>
