@@ -1,6 +1,7 @@
 <script setup lang="ts">
 const route = useRoute();
 const {data:post} = await useAsyncData('post',() => queryCollection('blog').path(route.path).first());
+const {data:surround} = await useAsyncData(`${route.path}-surround`,() => queryCollectionItemSurroundings('blog', route.path, {fields:['description']}));
 </script>
 
 <template>
@@ -30,10 +31,15 @@ const {data:post} = await useAsyncData('post',() => queryCollection('blog').path
              <UPage>
                  <UPageBody v-if="post" prose>
                     <ContentRenderer :value="post"/>
+                    <!-- séparateur -->
+                    <UDivider v-if="surround" class="my-5"/>
+                    <!-- Les liens des articles suivants et précédants -->
+                     <UContentSurround v-if="surround" :surround="surround"/>
                  </UPageBody>
+
              </UPage>
         </UContainer>
-        
+        <pre>{{ surround }}</pre>
 </template>
 
 <style scoped></style>
