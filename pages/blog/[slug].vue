@@ -34,9 +34,12 @@ const {data:surround} = await useAsyncData(`${route.path}-surround`,() => queryC
                     <!-- séparateur -->
                     <UDivider v-if="surround" class="my-5"/>
                     <!-- Les liens des articles suivants et précédants -->
+                     
                      <UContentSurround v-if="surround" :surround="surround"/>
                  </UPageBody>
-
+                 <template #right v-if="post.body.toc?.links.length">
+                     <UContentToc :links="post.body.toc?.links" />
+                 </template>
              </UPage>
         </UContainer>
         <pre>{{ surround }}</pre>
