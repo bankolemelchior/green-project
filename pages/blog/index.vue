@@ -21,7 +21,7 @@ const {data: posts} = await useAsyncData('posts',() => queryCollection('blog').a
                 />
             </UBlogList>
         </UContainer>
-        <p v-if="posts"> on a {{ posts.length}} posts</p>
+        <!-- <p v-if="posts"> on a {{ posts.length}} posts</p> -->
         <!-- <pre>{{ {posts} }}</pre> -->
     </div>
 </template>
